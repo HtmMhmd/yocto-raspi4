@@ -28,7 +28,7 @@ jobs:
             iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm
 
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         
       - name: Run build script
         run: |
@@ -36,7 +36,7 @@ jobs:
           ./scripts/build.sh
 
       - name: Upload Raspberry Pi 4 image
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: raspberry-pi-4-image
           path: |
