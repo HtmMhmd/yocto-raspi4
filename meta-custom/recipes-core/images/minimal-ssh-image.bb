@@ -19,9 +19,7 @@ IMAGE_INSTALL = " \
     u-boot \
     systemd \
     systemd-networkd-configuration \
-    docker \
-    docker-contrib \
-    docker-compose \
+    docker-ce \
     python3-docker-compose \
 "
 
