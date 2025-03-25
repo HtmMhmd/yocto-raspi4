@@ -38,6 +38,12 @@ if [ ! -d "meta-openembedded" ]; then
   git clone -b ${YOCTO_RELEASE} git://git.openembedded.org/meta-openembedded
 fi
 
+# Download meta-virtualization for Docker support
+if [ ! -d "meta-virtualization" ]; then
+  echo "Cloning meta-virtualization (${YOCTO_RELEASE})..."
+  git clone -b ${YOCTO_RELEASE} git://git.yoctoproject.org/meta-virtualization
+fi
+
 # Initialize build environment
 source poky/oe-init-build-env ${BUILD_DIR}
 
@@ -49,6 +55,8 @@ bitbake-layers add-layer "${PROJECT_DIR}/meta-raspberrypi"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-oe"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-python"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-networking"
+bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-filesystems"
+bitbake-layers add-layer "${PROJECT_DIR}/meta-virtualization"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-custom"
 
 # Configure local.conf
@@ -63,6 +71,11 @@ INIT_MANAGER = "systemd"
 ENABLE_UART = "1"
 RPI_USE_U_BOOT = "1"
 DISTRO_FEATURES_append = " wifi"
+
+# Docker requirements
+DISTRO_FEATURES_append = " virtualization"
+KERNEL_FEATURES_append = " features/netfilter/netfilter.scc"
+KERNEL_FEATURES_append = " features/cgroups/cgroups.scc"
 
 # Runtime package management
 PACKAGE_CLASSES ?= "package_ipk"

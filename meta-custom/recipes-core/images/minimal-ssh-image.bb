@@ -1,5 +1,5 @@
-SUMMARY = "Minimal SSH image with systemd for Raspberry Pi 4"
-DESCRIPTION = "A minimal image that has SSH and systemd enabled"
+SUMMARY = "Minimal SSH image with systemd and Docker for Raspberry Pi 4"
+DESCRIPTION = "A minimal image that has SSH, systemd, and Docker enabled"
 
 LICENSE = "MIT"
 
@@ -19,6 +19,10 @@ IMAGE_INSTALL = " \
     u-boot \
     systemd \
     systemd-networkd-configuration \
+    docker \
+    docker-contrib \
+    docker-compose \
+    python3-docker-compose \
 "
 
 # Enable SSH and empty root password
@@ -34,8 +38,8 @@ IMAGE_INSTALL_remove = " \
 
 # Image size
 IMAGE_OVERHEAD_FACTOR = "1.3"
-IMAGE_ROOTFS_SIZE ?= "8192"
-IMAGE_ROOTFS_EXTRA_SPACE = "1048576"
+IMAGE_ROOTFS_SIZE ?= "16384"
+IMAGE_ROOTFS_EXTRA_SPACE = "2097152"
 
 # Raspberry Pi configuration
 ENABLE_UART = "1"
