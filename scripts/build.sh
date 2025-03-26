@@ -23,25 +23,25 @@ cd ${PROJECT_DIR}
 # Download Poky (Yocto)
 if [ ! -d "poky" ]; then
   echo "Cloning poky (${YOCTO_RELEASE})..."
-  git clone -b ${YOCTO_RELEASE} git://git.yoctoproject.org/poky.git
+  git clone -b ${YOCTO_RELEASE} https://git.yoctoproject.org/poky.git
 fi
 
 # Download Raspberry Pi BSP layer
 if [ ! -d "meta-raspberrypi" ]; then
   echo "Cloning meta-raspberrypi (${YOCTO_RELEASE})..."
-  git clone -b ${YOCTO_RELEASE} git://git.yoctoproject.org/meta-raspberrypi.git
+  git clone -b ${YOCTO_RELEASE} https://git.yoctoproject.org/meta-raspberrypi.git
 fi
 
 # Download OpenEmbedded layer
 if [ ! -d "meta-openembedded" ]; then
   echo "Cloning meta-openembedded (${YOCTO_RELEASE})..."
-  git clone -b ${YOCTO_RELEASE} git://git.openembedded.org/meta-openembedded
+  git clone -b ${YOCTO_RELEASE} https://git.openembedded.org/meta-openembedded
 fi
 
 # Download meta-virtualization for Docker support
 if [ ! -d "meta-virtualization" ]; then
   echo "Cloning meta-virtualization (${YOCTO_RELEASE})..."
-  git clone -b ${YOCTO_RELEASE} git://git.yoctoproject.org/meta-virtualization
+  git clone -b ${YOCTO_RELEASE} https://git.yoctoproject.org/meta-virtualization
 fi
 
 # Initialize build environment
