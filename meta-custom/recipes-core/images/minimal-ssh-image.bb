@@ -20,7 +20,6 @@ IMAGE_INSTALL = " \
     systemd \
     systemd-networkd-configuration \
     docker-ce \
-    docker-compose \
 "
 
 # Enable SSH and empty root password
