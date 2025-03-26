@@ -20,6 +20,7 @@ IMAGE_INSTALL = " \
     systemd \
     systemd-networkd-configuration \
     docker-ce \
+    git \
 "
 
 # Enable SSH and empty root password
