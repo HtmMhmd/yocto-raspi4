@@ -23,7 +23,13 @@ IMAGE_INSTALL = " \
     git \
     opkg \
 "
-IMAGE_INSTALL += "iw wpa-supplicant wireless-tools"
+
+# WiFi support - use available packages
+IMAGE_INSTALL += " \
+    wpa-supplicant \
+    iw \
+    linux-firmware-rpidistro-bcm43430 \
+"
 
 # Enable SSH and empty root password
 EXTRA_IMAGE_FEATURES = " \
