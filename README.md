@@ -58,7 +58,7 @@ The image recipe (`minimal-ssh-image.bb`) creates a streamlined system with:
 - systemd init system
 - Docker container runtime and docker-compose
 - Network configuration via systemd-networkd
-- APK package manager
+- OPKG package manager
 - U-Boot bootloader
 - Essential kernel modules
 
@@ -129,26 +129,26 @@ After booting your Raspberry Pi with the built image:
 
 ## Package Management
 
-The image comes with APK package manager (Alpine Linux's package manager) pre-installed:
+The image comes with OPKG package manager pre-installed:
 
 1. Update package lists:
    ```bash
-   apk update
+   opkg update
    ```
 
 2. Install a package:
    ```bash
-   apk add <package-name>
+   opkg install <package-name>
    ```
 
-3. Search for packages:
+3. List installed packages:
    ```bash
-   apk search <search-term>
+   opkg list-installed
    ```
 
-4. List installed packages:
+4. Search for packages:
    ```bash
-   apk list --installed
+   opkg list | grep <search-term>
    ```
 
 ## Flashing the Image

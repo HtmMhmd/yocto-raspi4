@@ -21,6 +21,7 @@ IMAGE_INSTALL = " \
     systemd-networkd-configuration \
     docker-ce \
     git \
+    opkg \
 "
 IMAGE_INSTALL += "iw wpa-supplicant wireless-tools"
 
@@ -28,6 +29,7 @@ IMAGE_INSTALL += "iw wpa-supplicant wireless-tools"
 EXTRA_IMAGE_FEATURES = " \
     ssh-server-openssh \
     debug-tweaks \
+    package-management \
 "
 
 # Remove unnecessary packages

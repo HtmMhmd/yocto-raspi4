@@ -77,8 +77,9 @@ DISTRO_FEATURES_append = " virtualization"
 KERNEL_FEATURES_append = " features/netfilter/netfilter.scc"
 KERNEL_FEATURES_append = " features/cgroups/cgroups.scc"
 
-# Runtime package management
+# Package management configuration
 PACKAGE_CLASSES ?= "package_ipk"
+EXTRA_IMAGE_FEATURES += "package-management"
 
 # Additional disk space
 IMAGE_ROOTFS_EXTRA_SPACE = "1048576"
