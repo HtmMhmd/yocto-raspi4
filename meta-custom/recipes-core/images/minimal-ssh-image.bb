@@ -29,6 +29,7 @@ IMAGE_INSTALL += " \
     wpa-supplicant \
     iw \
     linux-firmware-rpidistro-bcm43430 \
+    linux-firmware-rpidistro-bcm43455 \
 "
 
 # Enable SSH and empty root password

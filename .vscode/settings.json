@@ -13,5 +13,6 @@
         "*.dbclient-js": "javascript",
         "*.conf": "bitbake",
         "*.inc": "bitbake"
-    }
+    },
+    "ros.distro": "humble"
 }
