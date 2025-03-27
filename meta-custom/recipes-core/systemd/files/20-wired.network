@@ -2,7 +2,6 @@
 Name=eth0
 
 [Network]
-DHCP=yes
-
-[DHCP]
-RouteMetric=10
+Address=192.168.1.100/24
+Gateway=192.168.1.1
+DNS=8.8.8.8

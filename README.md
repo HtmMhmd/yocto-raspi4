@@ -62,9 +62,36 @@ The image recipe (`minimal-ssh-image.bb`) creates a streamlined system with:
 - Essential kernel modules
 
 ### Network Configuration
-The system is configured to:
-- Use DHCP on the Ethernet interface (eth0)
-- Automatically connect when the interface is available
+The system is configured with:
+- Static IP address (192.168.4.103) through systemd-networkd for Ethernet
+- You can directly connect via SSH: `ssh root@192.168.4.103`
+- WiFi support with WPA Supplicant pre-configured
+- No password is required for SSH (debug-tweaks enabled)
+
+## WiFi Configuration
+
+The image comes with WiFi support pre-configured. To connect to your WiFi network:
+
+1. Before building, customize the WiFi credentials in:
+   ```
+   meta-custom/recipes-core/systemd/files/wpa_supplicant-wlan0.conf
+   ```
+
+2. Alternatively, after first boot, edit the WiFi configuration:
+   ```bash
+   nano /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
+   ```
+   
+   Then restart the WiFi service:
+   ```bash
+   systemctl restart wpa_supplicant@wlan0
+   ```
+
+3. Verify connectivity:
+   ```bash
+   ip a show wlan0
+   ping -I wlan0 google.com
+   ```
 
 ### CI/CD Pipeline
 
