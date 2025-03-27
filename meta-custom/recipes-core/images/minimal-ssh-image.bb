@@ -22,6 +22,7 @@ IMAGE_INSTALL = " \
     docker-ce \
     git \
 "
+IMAGE_INSTALL += "iw wpa-supplicant wireless-tools"
 
 # Enable SSH and empty root password
 EXTRA_IMAGE_FEATURES = " \
