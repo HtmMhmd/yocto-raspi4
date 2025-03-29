@@ -56,7 +56,6 @@ try_clone() {
     fi
 }
 
-
 # Download Poky (Yocto) with retries
 try_clone "https://git.yoctoproject.org/poky" "poky" "${YOCTO_RELEASE}" || {
     # Try backup mirror if primary fails
