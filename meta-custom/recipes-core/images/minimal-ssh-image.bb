@@ -24,6 +24,16 @@ IMAGE_INSTALL = " \
     opkg \
 "
 
+# Camera support packages
+IMAGE_INSTALL += " \
+    v4l-utils \
+    libcamera \
+    libcamera-tools \
+    gstreamer1.0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+"
+
 # WiFi support - use available packages
 IMAGE_INSTALL += " \
     wpa-supplicant \

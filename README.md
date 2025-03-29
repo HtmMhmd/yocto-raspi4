@@ -59,6 +59,7 @@ The image recipe (`minimal-ssh-image.bb`) creates a streamlined 64-bit system wi
 - Docker container runtime and docker-compose
 - Network configuration via systemd-networkd
 - OPKG package manager
+- Raspberry Pi Camera support
 - U-Boot bootloader
 - Essential kernel modules
 
@@ -125,6 +126,32 @@ After booting your Raspberry Pi with the built image:
 4. Create containers with docker-compose:
    ```bash
    docker-compose up -d
+   ```
+
+## Using the Camera
+
+The image comes with support for the Raspberry Pi Camera module:
+
+1. Connect the camera module to the Raspberry Pi CSI connector
+2. Use the following commands to test the camera:
+
+   ```bash
+   # List available cameras
+   libcamera-hello --list-cameras
+   
+   # Display a preview
+   libcamera-hello
+   
+   # Capture an image
+   libcamera-still -o test.jpg
+   
+   # Record a video (5 seconds)
+   libcamera-vid -t 5000 -o test.h264
+   ```
+
+3. GStreamer is also included for advanced video processing:
+   ```bash
+   gst-launch-1.0 libcamerasrc ! videoconvert ! jpegenc ! filesink location=test.jpg
    ```
 
 ## Package Management

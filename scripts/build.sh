@@ -112,6 +112,12 @@ ENABLE_UART = "1"
 RPI_USE_U_BOOT = "1"
 DISTRO_FEATURES_append = " wifi"
 
+# Enable camera support
+GPU_MEM = "128"
+VIDEO_CAMERA = "1"
+ENABLE_DWC2_PERIPHERAL = "1"
+CAMERA_ENABLE_CAMERA = "1"
+
 # Docker requirements
 DISTRO_FEATURES_append = " virtualization"
 KERNEL_FEATURES_append = " features/netfilter/netfilter.scc"
