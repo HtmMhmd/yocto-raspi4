@@ -1,5 +1,5 @@
-SUMMARY = "Minimal SSH image with systemd and Docker for Raspberry Pi 4"
-DESCRIPTION = "A minimal image that has SSH, systemd, and Docker enabled"
+SUMMARY = "Minimal SSH image with systemd and Docker for Raspberry Pi 4 (64-bit)"
+DESCRIPTION = "A minimal image that has SSH, systemd, and Docker enabled for Raspberry Pi 4 (64-bit)"
 
 LICENSE = "MIT"
 
@@ -11,7 +11,7 @@ VIRTUAL-RUNTIME_init_manager = "systemd"
 VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
 DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
 
-# Base packages
+# Base packages for 64-bit support
 IMAGE_INSTALL = " \
     packagegroup-core-boot \
     packagegroup-core-ssh-openssh \

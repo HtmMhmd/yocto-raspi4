@@ -1,6 +1,6 @@
-# Yocto CI/CD for Raspberry Pi 4
+# Yocto CI/CD for Raspberry Pi 4 (64-bit)
 
-This repository contains a minimal Yocto build configuration for Raspberry Pi 4 with:
+This repository contains a minimal Yocto build configuration for Raspberry Pi 4 (64-bit) with:
 - SSH enabled
 - systemd as init system
 - Docker container runtime
@@ -48,12 +48,12 @@ This repository contains a minimal Yocto build configuration for Raspberry Pi 4 
    ./scripts/build.sh
    ```
 
-4. Find your image at `build/tmp/deploy/images/raspberrypi4/minimal-ssh-image-raspberrypi4.wic.bz2`
+4. Find your image at `build/tmp/deploy/images/raspberrypi4-64/minimal-ssh-image-raspberrypi4-64.wic.bz2`
 
 ## Key Features
 
 ### Minimal SSH Image with Docker
-The image recipe (`minimal-ssh-image.bb`) creates a streamlined system with:
+The image recipe (`minimal-ssh-image.bb`) creates a streamlined 64-bit system with:
 - OpenSSH server for remote access
 - systemd init system
 - Docker container runtime and docker-compose
@@ -152,4 +152,7 @@ The image comes with OPKG package manager pre-installed:
    ```
 
 ## Flashing the Image
+
+curl -L https://github.com/docker/compose/releases/download/v2.34.0/docker-compose-linux-armv7   -o /usr/bin/docker-compose
+chmod +x /usr/bin/docker-compose
 
