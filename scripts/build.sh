@@ -96,6 +96,7 @@ bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-oe"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-python"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-networking"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-filesystems"
+bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-multimedia"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-virtualization"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-custom"
 
@@ -113,6 +114,7 @@ RPI_USE_U_BOOT = "1"
 DISTRO_FEATURES_append = " wifi"
 
 # Enable camera support
+DISTRO_FEATURES_append = " camera"
 GPU_MEM = "128"
 VIDEO_CAMERA = "1"
 ENABLE_DWC2_PERIPHERAL = "1"
