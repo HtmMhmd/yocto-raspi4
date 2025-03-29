@@ -40,5 +40,6 @@ jobs:
         with:
           name: raspberry-pi-4-image
           path: |
-            build/tmp/deploy/images/raspberrypi4-64/minimal-ssh-image-raspberrypi4-64.wic.bz2
-            build/tmp/deploy/images/raspberrypi4-64/minimal-ssh-image-raspberrypi4-64.wic.bmap
+            build/tmp/deploy/images
+            build/tmp/deploy/images/raspberrypi4*/minimal-ssh-image-raspberrypi4*.wic.bz2
+            build/tmp/deploy/images/raspberrypi4*/minimal-ssh-image-raspberrypi4*.wic.bmap
