@@ -9,7 +9,7 @@ BUILD_DIR="${PROJECT_DIR}/build"
 
 # Yocto settings
 YOCTO_RELEASE="dunfell"
-MACHINE="raspberrypi4"
+MACHINE="raspberrypi4-64"
 
 echo "=== Yocto CI/CD Build Script ==="
 echo "Project dir: ${PROJECT_DIR}"
