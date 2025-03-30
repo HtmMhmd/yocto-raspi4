@@ -28,7 +28,6 @@ IMAGE_INSTALL = " \
 IMAGE_INSTALL += " \
     v4l-utils \
     libcamera \
-    libcamera-tools \
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
     gstreamer1.0-plugins-good \
