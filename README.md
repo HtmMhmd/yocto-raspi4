@@ -60,6 +60,7 @@ The image recipe (`minimal-ssh-image.bb`) creates a streamlined 64-bit system wi
 - Network configuration via systemd-networkd
 - OPKG package manager
 - Raspberry Pi Camera support
+- Audio/Voice capabilities
 - U-Boot bootloader
 - Essential kernel modules
 
@@ -153,6 +154,42 @@ The image comes with support for the Raspberry Pi Camera module:
    ```bash
    gst-launch-1.0 libcamerasrc ! videoconvert ! jpegenc ! filesink location=test.jpg
    ```
+
+## Using Audio/Voice
+
+The image comes with full audio support for the Raspberry Pi:
+
+1. Testing your audio setup:
+   ```bash
+   # List audio devices
+   aplay -l
+   
+   # Test audio output
+   speaker-test -t wav -c 2
+   
+   # Play an audio file
+   aplay /usr/share/sounds/alsa/Front_Center.wav
+   ```
+
+2. Recording audio:
+   ```bash
+   # Record audio for 5 seconds
+   arecord -d 5 -f cd test.wav
+   
+   # Play back the recording
+   aplay test.wav
+   ```
+
+3. Audio configuration:
+   ```bash
+   # Adjust volume
+   alsamixer
+   
+   # Save volume settings
+   alsactl store
+   ```
+
+4. PulseAudio is also included for advanced audio routing and mixing.
 
 ## Package Management
 

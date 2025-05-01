@@ -90,6 +90,76 @@ source poky/oe-init-build-env ${BUILD_DIR}
 # Configure build
 echo "Configuring build..."
 
+# Add layers to bblayers.conf
+
+# 1. meta-raspberrypi
+
+# •  Use: Essential for tailoring the Yocto build to the Raspberry Pi 4 hardware.
+# •  Need: Without it, your image won't boot or function correctly on the Raspberry Pi 4.
+# •  Packages Provided:
+#   •  Bootloader: U-Boot configuration specific to Raspberry Pi.
+#   •  Kernel: Kernel configuration (.config fragments) and patches optimized for the Raspberry Pi's Broadcom SoC.
+#   •  Device Tree Overlays (DTOs): Hardware configuration description for Raspberry Pi (like camera, display, etc.).
+#   •  Raspberry Pi Firmware: Binary files (bootcode.bin, start.elf, fixup.dat) required for the Raspberry Pi's initial boot process.
+#   •  Drivers: Kernel modules for Raspberry Pi-specific peripherals (e.g., camera, Wi-Fi, Bluetooth).
+#   •  Configuration Files: config.txt (for boot options) and other Raspberry Pi-specific configurations.
+
+# 2. meta-openembedded/meta-oe
+
+# •  Use: Provides a broad base of general-purpose software packages, libraries, and utilities for building a functioning Linux system.
+# •  Need: Essential for a minimum, functioning operating system. Without it, you wouldn't have basic command-line tools, system utilities, and core libraries.
+# •  Packages Provided:
+#   •  System Utilities: coreutils (ls, cp, rm, etc.), findutils, procps (ps, top), net-tools (ifconfig, netstat).
+#   •  Libraries: glibc (C standard library), libstdc++ (C++ standard library), zlib (compression), openssl (cryptography).
+#   •  Networking: dhcpcd (DHCP client), iptables (firewall), openssh (SSH server/client).
+#   •  Text Editors: nano, vim (often you would not want to include vim in a minimal image, or you would be including a minimal version of it).
+#   •  Build Tools: make, autoconf, automake (but often these would be removed from the final image).
+
+# 3. meta-openembedded/meta-python
+
+# •  Use: Enables support for Python.
+# •  Need: Needed if your applications or system management tools rely on Python scripting.
+# •  Packages Provided:
+#   •  Python Interpreters: Python 2 and/or Python 3 interpreters.
+#   •  Python Libraries: setuptools, pip, virtualenv, and numerous other Python packages (e.g., requests, numpy, scipy).
+
+# 4. meta-openembedded/meta-networking
+
+# •  Use: Adds networking-related software and configuration options.
+# •  Need: Without it, you would have limited network connectivity options.
+# •  Packages Provided:
+#   •  Network Managers: NetworkManager, connman.
+#   •  Wireless Tools: wpa_supplicant (Wi-Fi), bluez (Bluetooth).
+#   •  Network Utilities: tcpdump, traceroute, ethtool, iwconfig.
+#   •  Network Protocols: avahi (zeroconf), samba (Windows file sharing).
+
+# 5. meta-openembedded/meta-filesystems
+
+# •  Use: Provides support for various filesystems.
+# •  Need: Enables the system to work with different filesystems.
+# •  Packages Provided:
+#   •  Filesystem Utilities: mkfs (filesystem creation tools), fsck (filesystem check and repair), e2fsprogs (ext2/ext3/ext4 filesystem tools), dosfstools (FAT filesystem tools), ntfs-3g (NTFS filesystem support).
+#   •  Filesystem Drivers: Kernel modules for supporting various filesystems (e.g., fuse).
+
+# 6. meta-openembedded/meta-multimedia
+
+# •  Use: Enables multimedia capabilities.
+# •  Need: Required if you want to play audio or video files, or use graphics libraries.
+# •  Packages Provided:
+#   •  Audio Codecs: alsa-lib, pulseaudio, lame (MP3 encoder), vorbis-tools (Ogg Vorbis).
+#   •  Video Codecs: x264 (H.264 encoder), x265 (H.265 encoder), ffmpeg (multimedia framework).
+#   •  Graphics Libraries: libpng, libjpeg, freetype (font rendering), mesa (OpenGL implementation).
+#   •  Multimedia Frameworks: gstreamer, vlc.
+
+# 7. meta-virtualization
+
+# •  Use: Enables Virtualization technologies
+# •  Need: Support for running Docker. Enables to install of containerized packages on image
+# •  Packages Provided:
+#   •  Docker: Docker Engine, Docker CLI
+#   •  Containers: Containerd, Runc
+
+
 # Add required layers
 bitbake-layers add-layer "${PROJECT_DIR}/meta-raspberrypi"
 bitbake-layers add-layer "${PROJECT_DIR}/meta-openembedded/meta-oe"
@@ -120,12 +190,17 @@ VIDEO_CAMERA = "1"
 ENABLE_DWC2_PERIPHERAL = "1"
 CAMERA_ENABLE_CAMERA = "1"
 
+# Enable audio support
+DISTRO_FEATURES_append = " alsa pulseaudio"
+MACHINE_FEATURES_append = " alsa"
+
 # Docker requirements
 DISTRO_FEATURES_append = " virtualization"
 KERNEL_FEATURES_append = " features/netfilter/netfilter.scc"
 KERNEL_FEATURES_append = " features/cgroups/cgroups.scc"
 
 # Package management configuration
+# Output/Effect: The build system will generate packages in the IPK format.
 PACKAGE_CLASSES ?= "package_ipk"
 EXTRA_IMAGE_FEATURES += "package-management"
 
