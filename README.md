@@ -1,5 +1,11 @@
 # Yocto CI/CD for Raspberry Pi 4 (64-bit)
 
+<img alt="Yocto Project" src="https://img.shields.io/badge/Yocto-Project-blue.svg">
+<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
+<img alt="Docker" src="https://img.shields.io/badge/Docker-Supported-blue.svg">
+<img alt="Raspberry Pi" src="https://img.shields.io/badge/RaspberryPi-64bit-red.svg">
+<img alt="GitHub Actions" src="https://img.shields.io/badge/CI/CD-GitHub_Actions-green.svg">
+
 This repository contains a minimal Yocto build configuration for Raspberry Pi 4 (64-bit) with:
 - SSH enabled
 - systemd as init system
@@ -96,12 +102,56 @@ The image comes with WiFi support pre-configured. To connect to your WiFi networ
    ping -I wlan0 google.com
    ```
 
-### CI/CD Pipeline
+## API Usage Diagram
 
-The GitHub Actions workflow will automatically:
-1. Set up the Yocto build environment
-2. Build the minimal SSH image for Raspberry Pi 4
-3. Upload the image as a build artifact
+```
+┌─────────────────┐     ┌──────────────────┐     ┌───────────────┐
+│                 │     │                  │     │               │
+│  Yocto Project  │────►│  Build System    │────►│ Custom Layer  │
+│                 │     │                  │     │               │
+└─────────────────┘     └──────────────────┘     └───────┬───────┘
+                                                         │
+                                                         ▼
+┌─────────────────┐     ┌──────────────────┐     ┌───────────────┐
+│                 │     │                  │     │               │
+│  CI/CD Pipeline │────►│  GitHub Actions  │────►│ Image Output  │
+│                 │     │                  │     │               │
+└─────────────────┘     └────────┬─────────┘     └───────▲───────┘
+                                 │                       │
+                                 ▼                       │
+                        ┌──────────────────┐     ┌───────────────┐
+                        │                  │     │               │
+                        │  Raspberry Pi 4  │     │  Recipe       │
+                        │  Image Files     │     │  Components   │
+                        └──────────────────┘     └───────────────┘
+```
+
+## 🔍 Detailed System Explanation
+
+The Yocto CI/CD for Raspberry Pi 4 system implements a complete pipeline for building customized Linux distributions:
+
+1. **Source Layer**
+   - Poky: Core Yocto Project files providing the build system
+   - meta-raspberrypi: BSP layer for Raspberry Pi hardware support
+   - meta-openembedded: Additional packages and recipes
+   - meta-custom: Project-specific customizations and configurations
+
+2. **Build System Layer**
+   - BitBake: Task executor and scheduler for recipe processing
+   - Shared State Cache: Accelerates builds by caching build artifacts
+   - Fetch System: Downloads source code from upstream repositories
+   - Package Management: Creates OPKG packages for the final system
+
+3. **Integration Layer**
+   - CI/CD Pipeline: Automates build process through GitHub Actions
+   - Docker Integration: Provides containerized environment for final system
+   - Deployment: Prepares bootable images for Raspberry Pi 4
+
+4. **Runtime Layer**
+   - systemd: Init system for service management
+   - SSH: Remote access and administration
+   - Docker: Container runtime for application deployment
+   - Network Configuration: Ethernet and WiFi connectivity setup
 
 ## Customization
 

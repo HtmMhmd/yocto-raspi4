@@ -153,6 +153,7 @@ ENABLE_UART = "1"
 
 # Image Output Format
 
+VIDEO_CAMERA = "1"
 
 # Ensure the wic image is created
 IMAGE_FSTYPES += "wic.bz2 wic.bmap"
