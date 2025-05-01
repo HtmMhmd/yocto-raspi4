@@ -207,8 +207,6 @@ EXTRA_IMAGE_FEATURES += "package-management"
 # Additional disk space
 IMAGE_ROOTFS_EXTRA_SPACE = "1048576"
 
-# Remove X11 dependencies
-DISTRO_FEATURES_remove = "x11 wayland"
 EOF
 
 # Build the minimal SSH image
