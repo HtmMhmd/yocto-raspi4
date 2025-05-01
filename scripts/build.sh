@@ -194,6 +194,9 @@ CAMERA_ENABLE_CAMERA = "1"
 DISTRO_FEATURES_append = " alsa pulseaudio"
 MACHINE_FEATURES_append = " alsa"
 
+# License configuration
+LICENSE_FLAGS_WHITELIST = "commercial"
+
 # Docker requirements
 DISTRO_FEATURES_append = " virtualization"
 KERNEL_FEATURES_append = " features/netfilter/netfilter.scc"

@@ -70,7 +70,6 @@ IMAGE_INSTALL += " \
     pulseaudio-misc \
     libasound \
     libasound-module-pcm-pulse \
-    sox \
     mpg123 \
 "
 
